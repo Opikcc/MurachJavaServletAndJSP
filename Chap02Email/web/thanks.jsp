@@ -1,3 +1,5 @@
+<%@ page import="murach.business.User" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,6 +19,19 @@
     <span>${user.firstName}</span><br />
     <label>Last Name : </label>
     <span>${user.lastName}</span><br />
+    
+    <% User user = (User) request.getAttribute("user"); %>
+    
+    <p>Here is the information that you entered:</p>
+    
+    <label>ID : </label>
+    <span><%= request.getAttribute("id") %></span><br />
+    <label>Email : </label>
+    <span><%= user.getEmail() %></span><br />
+    <label>First Name : </label>
+    <span><%= user.getFirstName() %></span><br />
+    <label>Last Name : </label>
+    <span><%= user.getLastName() %></span><br />
     
     <form action="emailList" method="get">
       <input type="hidden" name="action" value="join" />
