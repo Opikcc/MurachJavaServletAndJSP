@@ -1,12 +1,14 @@
 package murach.email;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import murach.business.User;
 
 @WebServlet("/murachTest")
 public class MurachTestServlet extends HttpServlet {
@@ -14,15 +16,22 @@ public class MurachTestServlet extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
+//    String url = "/murach_test.jsp";
+    String url = "/test.jsp";
     
-    try {
-      out.println("<h1>HTML from murach test servlet");
-    }
-    finally {
-      out.close();
-    }
+    GregorianCalendar calendar = new GregorianCalendar();
+    int currentYear = calendar.get(Calendar.YEAR);
+    
+    request.setAttribute("currentYear", currentYear);
+    request.setAttribute("message", "Hello There!!!");
+    
+    User user = new User("Asep@Gmail.Com", "Asep", "Anduk");
+    user.setWantUpdates("Yes");
+    request.setAttribute("user", user);
+    
+    getServletContext()
+      .getRequestDispatcher(url)
+      .forward(request, response);
   }
 
   @Override

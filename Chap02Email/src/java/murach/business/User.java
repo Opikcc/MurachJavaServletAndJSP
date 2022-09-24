@@ -6,6 +6,7 @@ public class User implements Serializable {
   private String firstName;
   private String lastName;
   private String email;
+  private String wantUpdates;
 
   public User() {
     this.firstName  = "";
@@ -44,6 +45,13 @@ public class User implements Serializable {
   public void setEmail(String email) {
     this.email = email;
   }
-  
+
+  public String getWantUpdates() {
+    return wantUpdates;
+  }
+
+  public void setWantUpdates(String wantUpdates) {
+    this.wantUpdates = wantUpdates;
+  }
   
 }
