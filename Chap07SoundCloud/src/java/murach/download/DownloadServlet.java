@@ -2,6 +2,10 @@ package murach.download;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +39,15 @@ public class DownloadServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
+    HttpSession session = request.getSession();
+    
+    Date currentDate = new Date();
+    
+    // Application Information
+    HashMap<String, String> appData = new HashMap();
+    appData.put("appName", "Sistem informasi Lagu-Lagu");
+    appData.put("version", "v1.0");
+    
     // Get current action
     String action = request.getParameter("action");
     if (action == null) {
@@ -50,6 +63,25 @@ public class DownloadServlet extends HttpServlet {
     else if (action.equals("checkUser")) {
       url = checkUser(request, response);
     }
+    
+    // Set  attribute
+    session.setAttribute("currentDate", currentDate);
+    request.setAttribute("appData", appData);
+    
+    User user = new User("John", "Smith", "jsmith@gmail.com");
+    session.setAttribute("user", user);
+    
+    String[] colors = {"red", "green", "blue"};
+    ServletContext sc = this.getServletContext();
+    sc.setAttribute("colors", colors);
+    
+    ArrayList<User> users = new ArrayList();
+    users.add(user);
+    session.setAttribute("users", users);
+    
+    log("currentDate : " + currentDate);
+    log("appData : " + appData);
+    log("user : " + user);
     
     // Forward to the view
     getServletContext()

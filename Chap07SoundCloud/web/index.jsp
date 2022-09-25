@@ -23,5 +23,25 @@
         Joe Rut - Genuine Wood Grained Finish
       </a>
     </p>
+    
+    <p>Hello ${user["firstName"]}</p>
+    
+    <p>The first color is ${colors[0]} <br>
+       The second color is ${colors[1]}
+    </p>
+    
+    <p>The first color is ${colors["0"]} <br>
+       The second color is ${colors["1"]}
+    </p>
+    
+    <p>The first user email is ${users[0].email}</p>
+    <p>The first user email is ${users["0"].email}</p>
+    
+    <p>The current date is ${currentDate}.</p>
+    <h4>Application Details</h4>
+    <label>App Name : </label>
+    <input type="text" name="appName" value="${appData["appName"]}" disabled /><br />
+    <label>App Version : </label>
+    <input type="text" name="version" value="${appData["version"]}" disabled /><br />
   </body>
 </html>
