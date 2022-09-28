@@ -103,6 +103,7 @@ public class CartServlet extends HttpServlet {
       }
       
       session.setAttribute("cart", cart);
+      session.setAttribute("cartTags", cart);
       url = "/cart.jsp";
     }
     else if (action.equals("checkout")) {
